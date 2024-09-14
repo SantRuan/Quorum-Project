@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from typing import List
-from domain.models import VoteResult
+from domain.models.vote_result import VoteResult
 
 router = APIRouter()
 
