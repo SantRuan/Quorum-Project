@@ -11,6 +11,7 @@ import { TabPanel } from './components/TabPanel';
 import { fetchLegislatorVotes, fetchBillVotes } from './service/service';
 import { BillVote } from '@/interfaces/BillVote';
 import { LegislatorVote } from '@/interfaces/LegislatorVote';
+import { STRINGS } from './constants/strings';
 
 export default function HomeClient() {
   const [legislatorVotes, setLegislatorVotes] = useState<LegislatorVote[]>([]);
@@ -34,22 +35,22 @@ export default function HomeClient() {
   return (
     <Box sx={{ maxWidth: 800, margin: 'auto', padding: 2 }}>
       <Typography variant="h4" component="h1" gutterBottom>
-        Quorum Voting Analysis
+        {STRINGS.PAGE_TITLE}
       </Typography>
       
       <Tabs value={tabValue} onChange={handleTabChange} aria-label="voting analysis tabs">
-        <Tab label="Legislator Votes" />
-        <Tab label="Bill Votes" />
+        <Tab label={STRINGS.TABS.LEGISLATOR_VOTES} />
+        <Tab label={STRINGS.TABS.BILL_VOTES} />
       </Tabs>
       
       <TabPanel value={tabValue} index={0}>
         <Card>
           <CardContent>
             <Typography variant="h6" gutterBottom>
-              Legislator Voting Patterns
+              {STRINGS.LEGISLATOR_SECTION.TITLE}
             </Typography>
             <Typography variant="body2" color="text.secondary" gutterBottom>
-              Support and opposition for bills by each legislator
+              {STRINGS.LEGISLATOR_SECTION.SUBTITLE}
             </Typography>
             <LegislatorVotesChart legislatorVotes={legislatorVotes} />
             <LegislatorVotesTable legislatorVotes={legislatorVotes} />
@@ -61,10 +62,10 @@ export default function HomeClient() {
         <Card>
           <CardContent>
             <Typography variant="h6" gutterBottom>
-              Bill Voting Results
+              {STRINGS.BILL_SECTION.TITLE}
             </Typography>
             <Typography variant="body2" color="text.secondary" gutterBottom>
-              Support and opposition for each bill
+              {STRINGS.BILL_SECTION.SUBTITLE}
             </Typography>
             <BillVotesTable billVotes={billVotes} />
           </CardContent>
