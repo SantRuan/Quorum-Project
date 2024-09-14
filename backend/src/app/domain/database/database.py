@@ -1,10 +1,12 @@
+import os
 import pandas as pd
 
+base_path = os.path.dirname(__file__)
 
-legislators_df = pd.read_csv("legislators.csv")
-bills_df = pd.read_csv("bills.csv")
-votes_df = pd.read_csv("votes.csv")
-vote_results_df = pd.read_csv("vote_results.csv")
+legislators_df = pd.read_csv(os.path.join(base_path, "legislators.csv"))
+bills_df = pd.read_csv(os.path.join(base_path, "bills.csv"))
+votes_df = pd.read_csv(os.path.join(base_path, "votes.csv"))
+vote_results_df = pd.read_csv(os.path.join(base_path, "vote_results.csv"))
 
 
 def get_legislator_stats(legislator_id: int):
