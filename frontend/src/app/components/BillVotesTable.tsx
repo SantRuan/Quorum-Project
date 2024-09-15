@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import { BillVote } from '../../interfaces/BillVote';
+import { BillVote } from '../interfaces/BillVote';
 
 interface BillVotesTableProps {
   billVotes: BillVote[];
