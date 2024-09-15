@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { TextField, Button, Box, List, ListItem, ListItemText, Typography, CircularProgress } from '@mui/material';
 import { getLegislatorByName, getLegislatorVotes } from '../service/service';
-import { Legislator } from '@/app/interfaces/Legislator';
+import { Legislator } from '../interfaces/Legislator';
 import { LegislatorVoteDetails } from '../service/service';
 import { STRINGS } from '../constants/strings';
 export function LegislatorSearch() {
