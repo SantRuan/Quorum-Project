@@ -8,9 +8,10 @@ import { LegislatorVotesChart } from './components/LegislatorVotesChart';
 import { LegislatorVotesTable } from './components/LegislatorVotesTable';
 import { BillVotesTable } from './components/BillVotesTable';
 import { TabPanel } from './components/TabPanel';
-import { fetchLegislatorVotes, fetchBillVotes } from './service/service';
-import { BillVote } from '@/interfaces/BillVote';
-import { LegislatorVote } from '@/interfaces/LegislatorVote';
+import { LegislatorSearch } from './components/LegislatorSearch';
+import { getLegislators, getBills, transformLegislatorsToLegislatorVotes, transformBillsToBillVotes } from './service/service';
+import { BillVote } from '@/app/interfaces/BillVote';
+import { LegislatorVote } from '@/app/interfaces/LegislatorVote';
 import { STRINGS } from './constants/strings';
 
 export default function HomeClient() {
@@ -20,10 +21,18 @@ export default function HomeClient() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const legislatorData = await fetchLegislatorVotes();
-      const billData = await fetchBillVotes();
-      setLegislatorVotes(legislatorData);
-      setBillVotes(billData);
+      try {
+        const [legislatorsData, billsData] = await Promise.all([
+          getLegislators(),
+          getBills()
+        ]);
+        const transformedLegislatorVotes = transformLegislatorsToLegislatorVotes(legislatorsData);
+        const transformedBillVotes = transformBillsToBillVotes(billsData);
+        setLegislatorVotes(transformedLegislatorVotes);
+        setBillVotes(transformedBillVotes);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
     };
     fetchData();
   }, []);
@@ -41,6 +50,7 @@ export default function HomeClient() {
       <Tabs value={tabValue} onChange={handleTabChange} aria-label="voting analysis tabs">
         <Tab label={STRINGS.TABS.LEGISLATOR_VOTES} />
         <Tab label={STRINGS.TABS.BILL_VOTES} />
+        <Tab label={STRINGS.TABS.SEARCH_LEGISLATOR} />
       </Tabs>
       
       <TabPanel value={tabValue} index={0}>
@@ -68,6 +78,20 @@ export default function HomeClient() {
               {STRINGS.BILL_SECTION.SUBTITLE}
             </Typography>
             <BillVotesTable billVotes={billVotes} />
+          </CardContent>
+        </Card>
+      </TabPanel>
+
+      <TabPanel value={tabValue} index={2}>
+        <Card>
+          <CardContent>
+            <Typography variant="h6" gutterBottom>
+              {STRINGS.LEGISLATOR_FIND_SECTION.TITLE}
+            </Typography>
+            <Typography variant="body2" color="text.secondary" gutterBottom>
+             {STRINGS.LEGISLATOR_FIND_SECTION.SUBTITLE}
+            </Typography>
+            <LegislatorSearch />
           </CardContent>
         </Card>
       </TabPanel>
