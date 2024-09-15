@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper } from '@mui/material';
-import { LegislatorVote } from '../../interfaces/LegislatorVote';
+import { LegislatorVote } from '../interfaces/LegislatorVote';
 
 interface LegislatorVotesTableProps {
   legislatorVotes: LegislatorVote[];

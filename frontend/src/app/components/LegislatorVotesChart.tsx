@@ -1,7 +1,7 @@
 import React from 'react';
 import { BarChart } from '@mui/x-charts/BarChart';
 import { Box } from '@mui/material';
-import { LegislatorVote } from '../../interfaces/LegislatorVote';
+import { LegislatorVote } from '../interfaces/LegislatorVote';
 
 interface LegislatorVotesChartProps {
   legislatorVotes: LegislatorVote[];
