@@ -1,9 +1,10 @@
 from typing import List
+from domain.interfaces.IVoteResultService import IVoteResultService
 from domain.models.vote_result import VoteResult
 from domain.database.database import vote_results_df
 
 
-class VoteResultService:
+class VoteResultService(IVoteResultService):
     @staticmethod
     def get_all_vote_results() -> List[VoteResult]:
         return [VoteResult(

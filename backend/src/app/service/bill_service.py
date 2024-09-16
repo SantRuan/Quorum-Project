@@ -1,9 +1,10 @@
 from typing import List
+from domain.interfaces.IBillService import IBillService
 from domain.models.bill import Bill
 from domain.database.database import bills_df, legislators_df, get_bill_stats
 
 
-class BillService:
+class BillService(IBillService):
     @staticmethod
     def get_all_bills() -> List[Bill]:
         bills = []
