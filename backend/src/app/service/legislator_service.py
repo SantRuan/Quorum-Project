@@ -1,9 +1,10 @@
 from typing import List
 from domain.models.legislator import Legislator
 from domain.database.database import legislators_df, get_legislator_stats
+from domain.interfaces.ILegislatorService import ILegislatorService
 
 
-class LegislatorService:
+class LegislatorService(ILegislatorService):
     @staticmethod
     def get_all_legislators() -> List[Legislator]:
         legislators = []

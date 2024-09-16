@@ -1,9 +1,10 @@
 from typing import List
+from domain.interfaces.IVoteService import IVoteService
 from domain.models.vote import Vote
 from domain.database.database import votes_df
 
 
-class VoteService:
+class VoteService(IVoteService):
     @staticmethod
     def get_all_votes() -> List[Vote]:
         return [Vote(id=row['id'], bill_id=row['bill_id']) for _, row in votes_df.iterrows()]
