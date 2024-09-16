@@ -9,6 +9,7 @@ import uvicorn
 
 
 app = FastAPI()
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:3000"],
@@ -16,6 +17,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 app.include_router(legislator_router)
 app.include_router(bills_router)
 app.include_router(vote_router)
