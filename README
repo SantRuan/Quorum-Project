@@ -1,0 +1,50 @@
+# Quorum Project
+
+Este projeto é dividido em duas partes: um backend em FastAPI e um frontend em Next.js. Abaixo estão as instruções para rodar o projeto em ambiente local e via Docker.
+
+Github do projeto: https://github.com/SantRuan/Quorum-Project
+
+## Pré-requisitos
+
+- Python 3.x instalado
+- Node.js instalado
+- Docker (opcional, para rodar com Docker Compose)
+
+### Rodando pelo Docker
+1. Para rodar o backend e o frontend com Docker Compose, execute o seguinte comando:
+    docker-compose up
+
+2 Acesse os mesmos pontos:
+    Backend (API): http://localhost:8000
+        Frontend: http://localhost:3000
+
+## Backend (FastAPI)
+
+### Rodando localmente
+
+1. Crie um ambient local:
+    python3 -m venv venv
+
+2. Instale as dependências do Python:
+   pip install -r requirements.txt
+   
+3. Navegue até o diretório do backend:
+    cd backend/src/app/
+
+4. Execute o backend:
+    python3 main.py
+
+
+## Frontend (Next.js)
+
+### Rodando localmente
+
+1. Instale as dependências:
+    npm install
+
+2. Faça o build do projeto:
+    npm run build
+
+3 .Inicie o frontend:
+    npm run start
+

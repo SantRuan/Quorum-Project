@@ -19,7 +19,7 @@ import { STRINGS } from './constants/strings';
 export default function HomeClient() {
   const [legislatorVotes, setLegislatorVotes] = useState<LegislatorVote[]>([]);
   const [billVotes, setBillVotes] = useState<BillVote[]>([]);
-  const [voteDetails, setVoteDetails] = useState<{ [legislatorName: string]: LegislatorVoteDetails[] }>({});
+  
   const [tabValue, setTabValue] = useState(0);
 
   useEffect(() => {
@@ -39,7 +39,6 @@ export default function HomeClient() {
           const votesData = await getLegislatorVotes(legislator.id);
           details[legislator.name] = votesData;
         }
-        setVoteDetails(details);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -77,7 +76,7 @@ export default function HomeClient() {
               {STRINGS.LEGISLATOR_SECTION.SUBTITLE}
             </Typography>
             <LegislatorVotesChart legislatorVotes={legislatorVotes} />
-            <LegislatorVotesTable legislatorVotes={legislatorVotes} voteDetails={voteDetails} />
+            <LegislatorVotesTable legislatorVotes={legislatorVotes} />
           </CardContent>
         </Card>
       </TabPanel><TabPanel value={tabValue} index={1}>
